@@ -11,7 +11,7 @@
     </padding>
     <spacing>20</spacing>
     <Label fx:id="messageLabel" text="Waiting for message..." />
-    <Button text="Connect to Server" onAction="#connectToServer"/>
+    <Button text="Test connection" onAction="#connectToServer"/>
     <Button text="Login" onAction="#login"/>
     <Button text="Register" onAction="#register"/>
 

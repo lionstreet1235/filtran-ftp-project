@@ -30,6 +30,9 @@ public class LoginController {
                 createDirectory(username);//truyen vao username de dat ten cho fil ecua user
                 Stage stage = (Stage) usernameField.getScene().getWindow();
                 stage.close();
+                //sau khi login thi connect den server
+                ClientAppController clientAppController = new ClientAppController();
+                clientAppController.connectToServer();
 
             } else {
                 messageLabel.setText("Invalid username or password.");
