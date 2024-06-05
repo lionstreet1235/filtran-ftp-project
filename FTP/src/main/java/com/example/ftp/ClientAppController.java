@@ -43,6 +43,7 @@ public class ClientAppController {
     @FXML
     private void login() {
         openLoginForm();
+
     }
 
     @FXML
@@ -62,6 +63,8 @@ public class ClientAppController {
             loginStage.setTitle("Login");
             loginStage.setScene(new Scene(root));
             loginStage.show();
+//            loginStage.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
