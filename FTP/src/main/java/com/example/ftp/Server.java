@@ -1,5 +1,6 @@
 package com.example.ftp;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
@@ -34,7 +35,20 @@ class ClientHandler implements Runnable {
     public void run() {
         try {
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-            out.println("Welcome to the server!");
+
+            // Simulate user login and directory access
+            String username = "testUser"; // This should be dynamic based on the actual user
+            File userDir = new File(System.getProperty("user.home") + File.separator + username);
+
+            if (userDir.exists() && userDir.isDirectory()) {
+                out.println("Welcome to the server, " + username + "!");
+                out.println("Your directory contains:");
+                for (File file : userDir.listFiles()) {
+                    out.println(file.getName());
+                }
+            } else {
+                out.println("Directory for user " + username + " not found.");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

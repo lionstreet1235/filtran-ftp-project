@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
@@ -17,9 +18,11 @@ public class ClientAppController {
 
     @FXML
     private Label messageLabel;
+    @FXML
+    private TextArea directoryTextArea;
 
     @FXML
-    private void connectToServer() {
+    void connectToServer() {
         new Thread(() -> {
             try {
                 int port = 8881;
@@ -27,11 +30,14 @@ public class ClientAppController {
                 System.out.println("Connected to server at port: " + port);
 
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                String messageFromServer = in.readLine();
-                System.out.println("Message from server: " + messageFromServer);
+                StringBuilder serverMessages = new StringBuilder();
+                String messageFromServer;
+                while ((messageFromServer = in.readLine()) != null) {
+                    serverMessages.append(messageFromServer).append("\n");
+                }
 
                 // Update UI on the JavaFX Application Thread
-                Platform.runLater(() -> messageLabel.setText("Message from server: " + messageFromServer));
+                Platform.runLater(() -> directoryTextArea.setText(serverMessages.toString()));
 
                 //socket.close();
             } catch (IOException e) {
@@ -40,6 +46,7 @@ public class ClientAppController {
             }
         }).start();
     }
+
     @FXML
     private void login() {
         openLoginForm();
@@ -50,7 +57,6 @@ public class ClientAppController {
     private void register() {
         openRegisterForm();
     }
-
 
     private void openLoginForm() {
         try {
@@ -63,8 +69,6 @@ public class ClientAppController {
             loginStage.setTitle("Login");
             loginStage.setScene(new Scene(root));
             loginStage.show();
-//            loginStage.close();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -86,4 +90,3 @@ public class ClientAppController {
         }
     }
 }
-
