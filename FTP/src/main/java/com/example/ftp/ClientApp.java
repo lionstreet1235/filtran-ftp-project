@@ -49,6 +49,7 @@ public class ClientApp extends Application {
                 e.printStackTrace();
                 javafx.application.Platform.runLater(() -> messageLabel.setText("Failed to connect to server"));
             }
+            System.out.println("Fuck");
         }).start();
     }
 }
