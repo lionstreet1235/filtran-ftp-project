@@ -1,17 +1,7 @@
-Using Mysql
-package com.example.ftp;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+Tạo local database Mysql tên "userdb", người dùng "son", pass"081103" để không bị xung đột mỗi khi commit bracnh của mình lên project. 
 
-**************tạo local database theo cac thông tin này cho đồng bộ, để mỗi khi commit không có thay đổi gì ở đây
 
-package com.example.ftp;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 
 
